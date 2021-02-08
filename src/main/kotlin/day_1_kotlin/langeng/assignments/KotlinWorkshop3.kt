@@ -37,7 +37,7 @@ object KotlinWorkshop3 {
             guesses[counter] = userInput
 
             // TODO 1: Uncomment. Declare playRound function: takes 2 integer arguments and returns a boolean.
-//            guessed = playRound(userInput, randomNumber)
+            guessed = playRound(userInput, randomNumber)
 
             counter++
         }
@@ -52,10 +52,15 @@ object KotlinWorkshop3 {
     //  If user entered number below randomNumber - show message "Your Guess is Lower"
     //  if user entered number over randomNumber - show message "Your Guess is Higher".
     //  See workshop #2
-//    private fun playRound(...) : ... {
-//
-//        return false
-//    }
+    private fun playRound(var1 : Int, var2 : Int) : Boolean {
+        if (var1 == var2)
+            println("Congratulations")
+        else if (var1 < var2)
+            println("Your Guess is Lower")
+        else
+            println("Your Guess is Higher")
+        return var1 == var2
+    }
 
 
 
@@ -64,26 +69,26 @@ object KotlinWorkshop3 {
     // TODO (bonus): Create analytics system for the game. Collect stats and print.
     private fun printGameStats(guesses: IntArray, guessCounter: Int, randomNumber: Int) {
         // TODO 3: Uncomment. Print total guesses count.
-//        printTotalCountOfGuesses(guessCounter)
+        printTotalCountOfGuesses(guessCounter)
 
         // TODO 4: Uncomment.
         //  Add high level function "countHigherGuesses" for printing higher elements from array.
-//         countHigherGuesses(guesses, randomNumber) { counter ->
-//             println("Total count of higher guesses: $counter\n")
-//         }
+         countHigherGuesses(guesses, randomNumber) { counter ->
+             println("Total count of higher guesses: $counter\n")
+         }
 
         // TODO 5: Uncomment. Create lambda function "countLowerGuesses" for printing lower elements from array.
         //  Do not print element if its value == "-1", the default value given to array on a initializing stage.
-        // countLowerGuesses(guesses, randomNumber)
+         countLowerGuesses(guesses, randomNumber)
 
         // TODO 6: Uncomment. Print every element of guesses in separate line via .forEach high-level function.
-        // guesses
+         guesses.forEach ( ::println )
     }
 
     // TODO 3
     // Should print total guesses count.
     private fun printTotalCountOfGuesses(guessCounter: Int) {
-        TODO()
+        println("Total guesses = $guessCounter")
     }
 
     // TODO 4
@@ -96,13 +101,25 @@ object KotlinWorkshop3 {
 
     ): Int {
         var counter = 0
-        TODO()
+        println("Values higher than num: ")
+        guesses.filter { it > randomNumber }
+            .forEach {
+                print("$it ")
+                counter++
+            }
+        print("\n");
+
+        printer(counter)
+
+        return counter
     }
 
     // TODO 5
     // Should count and print guesses that were lower than randomNumber.
     val countLowerGuesses: (IntArray, Int) -> Unit = { guesses, randomNumber ->
-        TODO()
+        print("values lower: ")
+        print(guesses.filter { it < randomNumber }.filter { it != -1 })
+        print("\n")
     }
 
 
